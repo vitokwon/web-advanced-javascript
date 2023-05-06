@@ -12,6 +12,19 @@ function updateRemainingCharacters(event) {
   const remainingCharacters = maxAllowedChars - enteredTextLength;
 
   remainingCharsElement.textContent = remainingCharacters;
+
+  if (remainingCharacters === 0) {
+    remainingCharsElement.classList.add("error");
+    productNameinputElement.classList.add("error");
+  } else if (remainingCharacters <= 10) {
+    remainingCharsElement.classList.add("warning");
+    productNameinputElement.classList.add("warning");
+    remainingCharsElement.classList.remove("error");
+    productNameinputElement.classList.remove("error");
+  } else {
+    remainingCharsElement.classList.remove("warning");
+    productNameinputElement.classList.remove("warning");
+  }
 }
 
 productNameinputElement.addEventListener("input", updateRemainingCharacters);
